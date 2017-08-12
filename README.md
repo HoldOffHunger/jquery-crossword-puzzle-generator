@@ -1,5 +1,7 @@
 100% JQuery Crossword Puzzle Generator and Game
 
+Demo: http://www.sortwords.com/crossword-puzzle-demo.html
+
 Example Usage:
 
 	$(document).ready(function(event) {
