@@ -7,7 +7,7 @@ Example Usage:
 				// word, clue
 			['Incomplete', 'Some of us are always meant to be this.'],
 			['Ecosystem', 'Any system where life can grow and thrive.'],
-      // ... etc..
+			// ... etc..
 		];
 		crosswordPuzzle(puzzlewords);
-   });
+	});
