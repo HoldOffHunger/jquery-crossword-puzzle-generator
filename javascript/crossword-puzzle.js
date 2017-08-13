@@ -554,8 +554,21 @@ function buildCrosswordBlockGraphs(graphs) {
 			}
 			
 			if(!built) {
+				viewPuzzle(matrix);
+
+				solutioncoordinates = [fullmatrix.length + 1, 0];
+				matrix = compactCrosswordBlockSource({'matrix':matrix})['matrix'];
 				fullmatrix.push('');
 				fullmatrix = joinVerticalMatrices(fullmatrix, matrix);
+
+				matrixpositions = interpolateMatrixPositions(matrixpositions, solutioncoordinates);
+
+				console.info(matrixpositions);
+				fullmatrixpositions.push({
+					'matrixpositions':matrixpositions,
+					'across':across,
+					'word':word,
+				});
 			}
 		}
 		
