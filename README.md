@@ -38,3 +38,4 @@ Fully supports internationalization.  Examples in twelve different languages :
 * Korean : https://www.earthfluent.com/korean/nouns-concepts-part-35/play.php?action=CrosswordPuzzle&previousquizzes=10
 >>>>>>> 3a9f4ae6fa2e15eab0b071a5ffc26d2fe5aacf67
 "# jquery-word-guess-game" 
+"# jquery-word-guess-game" 
