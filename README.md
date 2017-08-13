@@ -39,3 +39,4 @@ Fully supports internationalization.  Examples in twelve different languages :
 >>>>>>> 3a9f4ae6fa2e15eab0b071a5ffc26d2fe5aacf67
 "# jquery-word-guess-game" 
 "# jquery-word-guess-game" 
+"# jquery-word-guess-game" 
