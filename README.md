@@ -41,3 +41,4 @@ Fully supports internationalization.  Examples in twelve different languages :
 "# jquery-word-guess-game" 
 "# jquery-word-guess-game" 
 "# jquery-word-guess-game" 
+"# jquery-word-guess-game" 
