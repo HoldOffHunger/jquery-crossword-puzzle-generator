@@ -1,5 +1,3 @@
-# jQuery Crossword Puzzle Generator and Game
-
 <img src="./images/jQuery-crossword-puzzle-generator-and-game.jpg" width="600" alt="Crossword Puzzle Generator Logo">
 
 *You* make the list of words and clues.
@@ -7,6 +5,8 @@
 *We* make the puzzle and let players play!
 
 ##  TOC
+
+Welcome to the documentation for jQuery Crossword Puzzle Generator and Game!
 
 <img src="./images/jQuery-crossword-puzzle-generator-and-game-demo1.jpg" width="200" alt="Crossword Puzzle Generator Demo">
 
