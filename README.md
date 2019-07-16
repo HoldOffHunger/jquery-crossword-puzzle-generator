@@ -6,7 +6,9 @@
 
 *We* make the puzzle and let players play!
 
-## TOC
+##  TOC
+
+<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo1.jpg" width="200" alt="Crossword Puzzle Generator Demo">
 
 1. [TOC](#toc)
 2. [Demo](#demo)
@@ -15,6 +17,8 @@
 5. [Code Structure and Design](#code-structure-and-design)
 
 ## Demo
+
+<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo2.jpg" width="200" alt="Crossword Puzzle Generator Demo">
 
 ### Simple Demo
 
@@ -35,6 +39,8 @@ Demo Instructions :
 - If you want a much bigger crossword puzzle, click the "This Lesson + Last 10 Lessons + Next 10 Lessons" button.
 
 ## Example Usage
+
+<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo3.jpg" width="200" alt="Crossword Puzzle Generator Demo">
 
 ### Example Usage Instructions
 
@@ -60,6 +66,8 @@ $(document).ready(function(event) {
 
 ## Internationalization
 
+<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo4.jpg" width="200" alt="Crossword Puzzle Generator Logo">
+
 We have full UTF-8 support for all languages, from Latin-based languages to Sanskritic languages to Sino-Tibetan languages.  Here are some examples in 12 different languages.
 
 ### European Language Demos
@@ -82,6 +90,8 @@ We have full UTF-8 support for all languages, from Latin-based languages to Sans
 * [**Korean** Crossword Puzzle Game for Learning Korean: "Nouns - Concepts, Part 35"](https://www.earthfluent.com/korean/nouns-concepts-part-35/play.php?action=CrosswordPuzzle&previousquizzes=10) --- [Full Lesson Page](https://www.earthfluent.com/korean/nouns-concepts-part-35/#games)
 
 ## Code Structure and Design
+
+<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo5.jpg" width="200" alt="Crossword Puzzle Generator Logo">
 
 ### Coding Languages
 
