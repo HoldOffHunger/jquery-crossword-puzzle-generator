@@ -1,3 +1,6 @@
+// Author: HoldOffHunger
+// License: BSD 3-Clause
+
 			// Set Globals
 			// --------------------------------------------
 			
@@ -6,22 +9,52 @@ var crosswordclues = [];
 			// Set Randomization Configs
 			// --------------------------------------------
 
+	/* areWeInGodMode()
+		
+		Turn on to show the crossword puzzle completed, which makes debugging and coding much easier.
+		
+	*/
+
 function areWeInGodMode() {
 	return false;
 	return true;
 }
 
+	/* areWeRandomizingPuzzleWords()
+	
+		On/off switch for determining whether we randomize the puzzle words themselves (to increase the randomness of the overall resultant crossword puzzle).
+	
+	*/
+
 function areWeRandomizingPuzzleWords() {
 	return true;
 }
+
+	/* areWeRandomizingPuzzlePieces
+	
+		On/off switch for determining whether we are randomizing the puzzle pieces themselves, similarly to increase randomness.
+	
+	*/
 
 function areWeRandomizingPuzzlePieces() {
 	return true;
 }
 
+	/* areWeRandomizingAcrossDownChoices()
+	
+		On/off switch for determining if we are randomizing "spine" words from being either across or down.
+	
+	*/
+
 function areWeRandomizingAcrossDownChoices() {
 	return true;
 }
+
+	/* areWeRandomizingAcrossDownLists()
+	
+		On/off switch for determining if we randomize choices of the across and down phrase lists.
+	
+	*/
 
 function areWeRandomizingAcrossDownLists() {
 	return true;
@@ -29,6 +62,12 @@ function areWeRandomizingAcrossDownLists() {
 
 			// Main()
 			// --------------------------------------------
+
+	/* crosswordPuzzle(puzzlewords)
+	
+		Main function that receives the list of puzzlewords and then displays the crossword puzzle itself.
+	
+	*/
 
 function crosswordPuzzle(puzzlewords) {
 	var wordcount = puzzlewords.length;
@@ -72,7 +111,19 @@ function crosswordPuzzle(puzzlewords) {
 			// User Form Actions
 			// --------------------------------------------
 
+	/* showCrossWordOptions()
+	
+		Show the crossword puzzle and the lists.
+	
+	*/
+
 function showCrossWordOptions() {
+		/* solvefunction()
+		
+			User clicked the "solve" button for a phrase on the across or down list. Provide a prompt for solving the clue.
+		
+		*/
+		
 	var solvefunction = function() {
 		$('#solution-answer').val('');
 		$('#answer-results').hide();
@@ -121,11 +172,23 @@ function showCrossWordOptions() {
 		return false;
 	}
 	
+		/* closesolvefunction()
+		
+			User clicked "close" on the "solve phrase" dialogue that was brought up by solvefunction().
+		
+		*/
+	
 	var closesolvefunction = function() {
 		$('#answer-results').hide();
 		$('#answer-form').hide();
 		return false;
 	}
+	
+		/* answerfunction()
+		
+			User clicked "answer" on the "solve phrase" dialogue that was brought up by solvefunction().
+		
+		*/
 	
 	var answerfunction = function() {
 		var word = $(this).attr('data-word');
@@ -165,6 +228,12 @@ function showCrossWordOptions() {
 		return false;
 	}
 	
+		/* revealanswerfunction()
+		
+			User clicked "reveal answer" on the "solve phrase" dialogue that was brought up by solvefunction().
+		
+		*/
+	
 	var revealanswerfunction = function() {
 		var word = $(this).attr('data-word');
 		var across = $(this).attr('data-across');
@@ -201,6 +270,12 @@ function showCrossWordOptions() {
 			// Show Crossword Lists
 			// --------------------------------------------
 
+	/* showCrossWordLists(wordlists, clues)
+	
+		Fill in the numbers for the crossword puzzle and then display the lists of words associated with those numbers.
+	
+	*/
+
 function showCrossWordLists(wordlists, clues) {
 	var acrosslist = wordlists['across'];
 	var downlist = wordlists['down'];
@@ -219,6 +294,12 @@ function showCrossWordLists(wordlists, clues) {
 	$('#left-list').append(acrosslistorderedelement);
 	$('#right-list').append(downlistorderedelement);
 }
+
+	/* getViewableCrossWordList(listitems, clues, across)
+	
+		Get a single crossword list, which may be used for either across or down lists.
+	
+	*/
 
 function getViewableCrossWordList(listitems, clues, across) {
 	var numbers = Object.keys(listitems);
@@ -254,6 +335,12 @@ function getViewableCrossWordList(listitems, clues, across) {
 	
 	return element;
 }
+
+	/* fillInCrossWordNumbers(listitems, blockitems, blockitemsordered)
+	
+		Fill in the numbers in the crossword puzzle boxes that are each individually associated with a particular clue from the across or down lists.
+	
+	*/
 
 function fillInCrossWordNumbers(listitems, blockitems, blockitemsordered) {
 	var orderedlist = [];
@@ -291,6 +378,12 @@ function fillInCrossWordNumbers(listitems, blockitems, blockitemsordered) {
 	return orderedlist;
 }
 
+	/* getBlockingItemNumber(coordinates, blockitems, blockitemsordered)
+	
+		It is possible for a grid cell to be the start position for one item from the across list and one item from the down list. In this case, a "blocking number" is already assigned to the grid cell. We resolve this by placing the number on the opposite side in the cell, so all cells have a number in the top-left corner, but this one has a number in the top-left and the top-right.
+	
+	*/
+
 function getBlockingItemNumber(coordinates, blockitems, blockitemsordered) {
 	if(!blockitems || !blockitems.length || !blockitemsordered || !blockitemsordered.length) {
 		return false;
@@ -308,6 +401,12 @@ function getBlockingItemNumber(coordinates, blockitems, blockitemsordered) {
 	return false;
 }
 
+	/* getBlockItemNumberPosition(word, items)
+	
+		This returns the number position of the blocking item.
+	
+	*/
+
 function getBlockItemNumberPosition(word, items) {
 	var itemkeys = Object.keys(items);
 	
@@ -324,6 +423,12 @@ function getBlockItemNumberPosition(word, items) {
 
 			// Show Crossword Puzzle
 			// --------------------------------------------
+
+	/* showCrossWordPuzzle(matrix)
+	
+		Show the crossword puzzle itself. Only display the answers if we are in god mode.
+	
+	*/
 
 function showCrossWordPuzzle(matrix) {
 	var widestline = getWidestLine(matrix);
@@ -364,6 +469,12 @@ function showCrossWordPuzzle(matrix) {
 	return true;
 }
 
+	/* buildCrosswordLists(matrixpositions)
+	
+		From the crossword puzzle, build the lists of across and down.
+	
+	*/
+
 function buildCrosswordLists(matrixpositions) {
 	var acrosslist = [];
 	var downlist = [];
@@ -400,6 +511,12 @@ function buildCrosswordLists(matrixpositions) {
 	};
 }
 
+	/* buildCrosswordList(list, positions)
+	
+		Build a single crossword list, either for across or down.
+	
+	*/
+
 function buildCrosswordList(list, positions) {
 	var matrixpositionwords = Object.keys(positions);
 	
@@ -419,6 +536,12 @@ function buildCrosswordList(list, positions) {
 
 			// Build Crossword
 			// --------------------------------------------
+
+	/* buildCrosswordBlockGraphs(graphs)
+	
+		Given groups of words, each with a "spine" word, assemble these into a single crossword puzzle block graph.
+	
+	*/
 
 function buildCrosswordBlockGraphs(graphs) {
 	var firstgraph = graphs.shift();
@@ -583,6 +706,12 @@ function buildCrosswordBlockGraphs(graphs) {
 	return fullgraph;
 }
 
+	/* interpolateMatrixPositions(matrixpositions, coordinates, word)
+	
+		Shift the entire matrix of crossword puzzle words by some coordinates. For example, move each row up by 1 and left by 5, which would retain the relationship among the words, since they are all moved by the same amount and in the same directions.
+	
+	*/
+
 function interpolateMatrixPositions(matrixpositions, coordinates, word) {
 	var matrixpositionwords = Object.keys(matrixpositions);
 	
@@ -596,17 +725,35 @@ function interpolateMatrixPositions(matrixpositions, coordinates, word) {
 	return matrixpositions;
 }
 
+	/* viewPuzzle(puzzle)
+	
+		Debugging tool to view the puzzle.
+	
+	*/
+
 function viewPuzzle(puzzle) {
 	console.log("Viewing puzzle from...|" + arguments.callee.caller.name + "|");
 	console.info(JSON.stringify(puzzle).replace(/,/g, ",\n"));
 }
 
-function rtrim(string){
+	/* rtrim(string)
+	
+		Right-trim a string.
+		
+	*/
+
+function rtrim(string) {
 	if(!string) {
 		return "";
 	}
 	return string.replace(/\s+$/, '');
 }
+
+	/* joinHorizontalMatrices(fullmatrix, matrix, coordinates)
+	
+		Given two matrices of crossword puzzle graphs, join them horizontally.
+	
+	*/
 
 function joinHorizontalMatrices(fullmatrix, matrix, coordinates) {
 	if(coordinates[0] == 0 || coordinates[1] == 0) {
@@ -663,6 +810,12 @@ function joinHorizontalMatrices(fullmatrix, matrix, coordinates) {
 	return fullmatrix;
 }
 
+	/* joinVerticalMatrices(bigmatrix, smallmatrix)
+	
+		Given two matrices of crossword puzzle graphs, join them vertically.
+	
+	*/
+
 function joinVerticalMatrices(bigmatrix, smallmatrix) {
 	var height = bigmatrix.length;
 	
@@ -672,6 +825,12 @@ function joinVerticalMatrices(bigmatrix, smallmatrix) {
 	
 	return bigmatrix;
 }
+
+	/* nonConflictingRows(toprow, bottomrow)
+		
+		Are these two rows without conflicts between each other? A conflict is when one of the words from one row touch the words of another row (which breaks the crossword puzzle rule that only corners and edges may be the origin of a word, and never the center of the grid block).
+		
+	*/
 
 function nonConflictingRows(toprow, bottomrow) {
 	var rowtocheck;
@@ -699,6 +858,12 @@ function nonConflictingRows(toprow, bottomrow) {
 	return true;
 }
 
+	/* incrementMatrixHorizontally(matrix)
+	
+		Add another blank column to the crossword puzzle grid.
+	
+	*/
+
 function incrementMatrixHorizontally(matrix) {
 	for(var i = 0; i < matrix.length; i++) {
 		matrix[i] = ' ' + matrix[i];
@@ -706,6 +871,12 @@ function incrementMatrixHorizontally(matrix) {
 	
 	return matrix;
 }
+
+	/* checkToBuildVertically(matrix, smallmatrix, widestline, tallestline)
+	
+		Should we build vertically? We should do so if the crossword puzzle is wider than it is taller, which will give us the most compact crossword puzzle possibility.
+	
+	*/
 
 function checkToBuildVertically(matrix, smallmatrix, widestline, tallestline) {
 	if(matrix.length <= smallmatrix.length) {
@@ -719,9 +890,21 @@ function checkToBuildVertically(matrix, smallmatrix, widestline, tallestline) {
 	return randomTrueFalse();
 }
 
+	/* randomTrueFalse()
+	
+		Random yes/no generator.
+	
+	*/
+
 function randomTrueFalse() {
 	return Math.random() > 0.5 ? true : false;
 }
+
+	/* getWidestLine(matrix)
+	
+		Given a matrix, returns the widest line.
+	
+	*/
 
 function getWidestLine(matrix) {
 	var widestlength = 0;
@@ -736,6 +919,12 @@ function getWidestLine(matrix) {
 	return widestlength;
 }
 
+	/* getThinnestLine(matrix)
+	
+		Given a matrix, returns the thinnest line. This is the line with the most amount of black space to its right.
+	
+	*/
+
 function getThinnestLine(matrix) {
 	var thinnestlength = 999999;
 	
@@ -749,9 +938,21 @@ function getThinnestLine(matrix) {
 	return thinnestlength;
 }
 
+	/* getTallestLine(matrix)
+	
+		Given a matrix, return the tallest line. This is the line with the least amount of blank space below it.
+	
+	*/
+
 function getTallestLine(matrix) {
 	return matrix.length;
 }
+
+	/* buildCrosswordBlocks(crosswordblocks)
+	
+		Build groups of words, each with one spine word.
+	
+	*/
 
 function buildCrosswordBlocks(crosswordblocks) {
 	var graphs = [];
@@ -820,6 +1021,12 @@ function buildCrosswordBlocks(crosswordblocks) {
 	return graphs;
 }
 
+	/* buildUnassignedCrosswordBlock(unmatchedcrosswords)
+		
+		At the end of making our groups of words with spine words, we have smoe that could not be matched at all. Group these together as a block.
+		
+	*/
+
 function buildUnassignedCrosswordBlock(unmatchedcrosswords) {
 	var across = true;
 	
@@ -856,12 +1063,24 @@ function buildUnassignedCrosswordBlock(unmatchedcrosswords) {
 	return graph;
 }
 
+	/* insertLetterAtStringPosition(letter, string, position)
+		
+		Arrays are immutable within JavaScript. So, this method allows us to edit strings by inserting letters at positions.
+		
+	*/
+
 function insertLetterAtStringPosition(letter, string, position) {
 	if(!letter) {
 		letter = ' ';
 	}
 	return string.substr(0, position) + letter + string.substr(position + 1);
 }
+
+	/* setLetterMatrixHorizontally(matrix, word, y, x)
+	
+		Build a graph from a group of words horizontally.
+	
+	*/
 
 function setLetterMatrixHorizontally(matrix, word, y, x) {
 	for(var i = 0; i < word.length; i++) {
@@ -884,6 +1103,12 @@ function setLetterMatrixHorizontally(matrix, word, y, x) {
 	}
 	return matrix;
 }
+
+	/* setLetterMatrixVertically(matrix, word, y, x)
+		
+		Build a group from a group of words vertically.
+		
+	*/
 
 function setLetterMatrixVertically(matrix, word, y, x) {
 	for(var i = 0; i < word.length; i++) {
@@ -908,6 +1133,12 @@ function setLetterMatrixVertically(matrix, word, y, x) {
 	return matrix;
 }
 
+	/* findMatchingOffset(word, letter)
+	
+		Find the position of a letter in a word.
+	
+	*/
+
 function findMatchingOffset(word, letter) {
 	for(var i = 0; i < word.length; i++) {
 		if(word[i] == letter) {
@@ -916,6 +1147,12 @@ function findMatchingOffset(word, letter) {
 	}
 	return false;
 }
+
+	/* findMatchingLetterMatrixPositionVertical(matrix, word, subletter, index)
+	
+		Find the vertical position of a letter.
+	
+	*/
 
 function findMatchingLetterMatrixPositionVertical(matrix, word, subletter, index) {
 	for(var i = 0; i < word.length; i++) {
@@ -931,6 +1168,12 @@ function findMatchingLetterMatrixPositionVertical(matrix, word, subletter, index
 	return false;
 }
 
+	/* findMatchingLetterMatrixPosition(matrix, word, subletter, index)
+	
+		Find the horizontal position of a letter.
+	
+	*/
+
 function findMatchingLetterMatrixPosition(matrix, word, subletter, index) {
 	for(var i = 0; i < word.length; i++) {
 		var letter = word[i];
@@ -944,6 +1187,12 @@ function findMatchingLetterMatrixPosition(matrix, word, subletter, index) {
 	return false;
 }
 
+	/* fillLetterMatrixVertically(matrix, word, index)
+	
+		Fill a matrix with the appropriate amount of white space to make it into a perfect rectangular block.
+	
+	*/
+
 function fillLetterMatrixVertically(matrix, word, index) {
 	var spacing = Array(index).join(" ");
 	for(var i = 0; i < word.length; i++) {
@@ -952,9 +1201,21 @@ function fillLetterMatrixVertically(matrix, word, index) {
 	return matrix;
 }
 
+	/* buildUnmatchedBlock(unmatchedblock)
+	
+		Compose the unmatched block. Since nothing matches, there's nothing to build here.
+	
+	*/
+
 function buildUnmatchedBlock(unmatchedblock) {
 	return unmatchedblock;
 }
+
+	/* getLongestWordLength(words)
+	
+		Get the length of the longest word.
+	
+	*/
 
 function getLongestWordLength(words) {
 	var length = 0;
@@ -970,6 +1231,12 @@ function getLongestWordLength(words) {
 	return length;
 }
 
+	/* compactCrosswordBlockSources(graphs)
+	
+		Compact the graphs that will be used to make the full crossword puzzle graph.
+	
+	*/
+
 function compactCrosswordBlockSources(graphs) {
 	for(var i = 0; i < graphs.length; i++) {
 		var graph = graphs[i];
@@ -983,6 +1250,12 @@ function compactCrosswordBlockSources(graphs) {
 	return graphs;
 }
 
+	/* compactCrosswordBlockSource(graph)
+	
+		Compact a single crossword block source graph.
+	
+	*/
+
 function compactCrosswordBlockSource(graph) {
 	graph = compactCrosswordBlockBottom(graph);
 	graph = compactCrosswordBlockTop(graph);
@@ -990,6 +1263,12 @@ function compactCrosswordBlockSource(graph) {
 	graph = compactCrosswordBlockRight(graph);
 	return graph;
 }
+
+	/* compactCrosswordBlockTop(graph)
+	
+		Compact the crossword block from the top.
+	
+	*/
 
 function compactCrosswordBlockTop(graph) {
 	var crosswordblock = graph['matrix'];
@@ -1017,6 +1296,12 @@ function compactCrosswordBlockTop(graph) {
 	return graph;
 }
 
+	/* incrementCrossWordBlockHeights(crosswordblocksolutions)
+	
+		Increase the vertical position of the words in a crossword block by one.
+	
+	*/
+
 function incrementCrossWordBlockHeights(crosswordblocksolutions) {
 	if(!crosswordblocksolutions) {
 		return crosswordblocksolutions;
@@ -1031,6 +1316,12 @@ function incrementCrossWordBlockHeights(crosswordblocksolutions) {
 	return crosswordblocksolutions;
 }
 
+	/* incrementCrossWordBlockLengths(crosswordblocksolutions)
+	
+		Increase the horizontal position of the words in a crossword block by one.
+	
+	*/
+
 function incrementCrossWordBlockLengths(crosswordblocksolutions) {
 	if(!crosswordblocksolutions) {
 		return crosswordblocksolutions;
@@ -1044,6 +1335,12 @@ function incrementCrossWordBlockLengths(crosswordblocksolutions) {
 	}
 	return crosswordblocksolutions;
 }
+
+	/* compactCrosswordBlockBottom(graph)
+	
+		Compact a crossword block on the bottom.
+	
+	*/
 
 function compactCrosswordBlockBottom(graph) {
 	var crosswordblock = graph['matrix'];
@@ -1066,6 +1363,12 @@ function compactCrosswordBlockBottom(graph) {
 	
 	return graph;
 }
+
+	/* compactCrosswordBlockLeft(graph)
+	
+		Compact a crossword block on the left.
+	
+	*/
 
 function compactCrosswordBlockLeft(graph) {
 	var crosswordblock = graph['matrix'];
@@ -1107,6 +1410,12 @@ function compactCrosswordBlockLeft(graph) {
 	return graph;
 }
 
+	/* compactCrosswordBlockRight(graph)
+	
+		Compact a crossword block on the right.
+	
+	*/
+
 function compactCrosswordBlockRight(graph) {
 	var crosswordblock = graph['matrix'];
 	var crosswordblocksolutions = graph['matrixpositions'];
@@ -1145,6 +1454,12 @@ function compactCrosswordBlockRight(graph) {
 	
 	return graph;
 }
+
+	/* generateCrosswordBlockSources(shuffledwords)
+	
+		Make the crossword block sources, which are the sub-graphs or mini-graphs. These will be put together to make the full crossword puzzle.
+	
+	*/
 
 function generateCrosswordBlockSources(shuffledwords) {
 	var crosswordblocks = [];
@@ -1202,6 +1517,12 @@ function generateCrosswordBlockSources(shuffledwords) {
 	};
 }
 
+	/* getLettersHashPositionsForWord(word)
+		
+		Get a hash of the letters and the positions of the letters of a word.
+		
+	*/
+
 function getLettersHashPositionsForWord(word) {
 	var lettershash = [];
 	
@@ -1216,6 +1537,12 @@ function getLettersHashPositionsForWord(word) {
 				
 	return lettershash;
 }
+
+	/* getLettersHashCountForWord(word)
+	
+		Get a hash of the counts for the letters of a word.
+	
+	*/
 
 function getLettersHashCountForWord(word) {
 	var lettershash = [];
@@ -1232,6 +1559,12 @@ function getLettersHashCountForWord(word) {
 	return lettershash;
 }
 
+	/* getMatchingLetter(letters, nextword)
+	
+		Get the matching letter between two overlapping words.
+	
+	*/
+
 function getMatchingLetter(letters, nextword) {
 	var matchingletter = '';
 	
@@ -1244,6 +1577,12 @@ function getMatchingLetter(letters, nextword) {
 	
 	return matchingletter;
 }
+
+	/* shuffle(array)
+	
+		Randomize array.
+	
+	*/
 
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
