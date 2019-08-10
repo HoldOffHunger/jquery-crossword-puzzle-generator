@@ -8,7 +8,7 @@
 
 Welcome to the documentation for jQuery Crossword Puzzle Generator and Game!
 
-<img src="./images/jQuery-crossword-puzzle-generator-and-game-demo1.jpg" width="200" alt="Crossword Puzzle Generator Demo">
+<center><img src="./images/jQuery-crossword-puzzle-generator-and-game-demo1.jpg" width="200" alt="Crossword Puzzle Generator Demo"></center>
 
 1. [TOC](#toc)
 2. [Demo](#demo)
